@@ -56,9 +56,9 @@
 
     <section>
         <p>Enter the odd leg, even leg, and hypotenuse values:</p>
-        <input type="number" id="inputA" placeholder="Odd Leg">
-        <input type="number" id="inputB" placeholder="Even Leg">
-        <input type="number" id="inputC" placeholder="Hypotenuse">
+        <input type="text" id="inputA" placeholder="Odd Leg">
+        <input type="text" id="inputB" placeholder="Even Leg">
+        <input type="text" id="inputC" placeholder="Hypotenuse">
         <button onclick="findPath()">Find Path</button>
         <p id="result"></p>
 
@@ -67,7 +67,7 @@
 
     <script>
         function gcd(a, b) {
-            while (b !== 0) {
+            while (b !== 0n) {
                 const temp = b;
                 b = a % b;
                 a = temp;
@@ -77,9 +77,9 @@
 
         function isL(x, y, p) {
             const a = x - y;
-            const b = 3 * x - 4 * y;
+            const b = 3n * x - 4n * y;
             
-            if (a < b && a > (b / 2) && a > 0 && b > 0) {
+            if (a < b && a > (b / 2n) && a > 0n && b > 0n) {
                 y = a;
                 x = b;
                 p += " L";
@@ -90,9 +90,9 @@
 
         function isM(x, y, p) {
             const a = x - y;
-            const b = 2 * y - x;
+            const b = 2n * y - x;
 
-            if (a < b && a > (b / 2) && a > 0 && b > 0) {
+            if (a < b && a > (b / 2n) && a > 0n && b > 0n) {
                 y = a;
                 x = b;
                 p += " M";
@@ -102,10 +102,10 @@
         }
 
         function isR(x, y, p) {
-            const a = 3 * y - 2 * x;
-            const b = 2 * y - x;
+            const a = 3n * y - 2n * x;
+            const b = 2n * y - x;
 
-            if (a < b && a > (b / 2) && a > 0 && b > 0) {
+            if (a < b && a > (b / 2n) && a > 0n && b > 0n) {
                 y = a;
                 x = b;
                 p += " R";
@@ -115,14 +115,14 @@
         }
 
         function findPath() {
-            const a = parseInt(document.getElementById('inputA').value);
-            const b = parseInt(document.getElementById('inputB').value);
-            const c = parseInt(document.getElementById('inputC').value);
+            const a = BigInt(document.getElementById('inputA').value);
+            const b = BigInt(document.getElementById('inputB').value);
+            const c = BigInt(document.getElementById('inputC').value);
             let x = gcd(a + c, b);
             let y = gcd(a, b + c);
             let p = "";
 
-            while (x !== 4 || y !== 3) {
+            while (x !== 4n || y !== 3n) {
                 const resultL = isL(x, y, p);
                 const resultM = isM(x, y, p);
                 const resultR = isR(x, y, p);
@@ -140,7 +140,7 @@
 
             p = p.split(' ').reverse().join(' '); // Reverse the string
             const resultElement = document.getElementById('result');
-            if (x === 4 && y === 3) {
+            if (x === 4n && y === 3n) {
                 resultElement.innerHTML = "The path from 3-4-5 triple to the Pythagorean triple specified is: <span class='path'>" + p + "</span>";
             } else {
                 resultElement.innerHTML = "No valid path found.";
