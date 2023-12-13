@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythagorean Triple Path</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        p {
+            margin: 20px 0;
+        }
+
+        .path {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Pythagorean Triple Path Finder</h1>
+    </header>
+
+    <section>
+        <p>Enter the odd leg, even leg, and hypotenuse values:</p>
+        <input type="text" id="inputA" placeholder="Odd Leg">
+        <input type="text" id="inputB" placeholder="Even Leg">
+        <input type="text" id="inputC" placeholder="Hypotenuse">
+        <button onclick="findPath()">Find Path</button>
+        <p id="result"></p>
+        <h3>Sample tree propagation depiction</h3>
+        <img src="./tree.png" alt="tree" width="300" height="300">
+        <p>To learn more about Pythagorean Tree, refer this video:<a href="https://youtu.be/94mV7Fmbx88?feature=shared" target="_blank">Pythagorean Tree</a></p>
+    </section>
+
+    <script>
+        function gcd(a, b) {
+            while (b !== 0n) {
+                const temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function isL(x, y, p) {
+            const a = x - y;
+            const b = 3n * x - 4n * y;
+            
+            if (a < b && a > (b / 2n) && a > 0n && b > 0n) {
+                y = a;
+                x = b;
+                p += " L";
+                return [x, y, p];
+            }
+            return null;
+        }
+
+        function isM(x, y, p) {
+            const a = x - y;
+            const b = 2n * y - x;
+
+            if (a < b && a > (b / 2n) && a > 0n && b > 0n) {
+                y = a;
+                x = b;
+                p += " M";
+                return [x, y, p];
+            }
+            return null;
+        }
+
+        function isR(x, y, p) {
+            const a = 3n * y - 2n * x;
+            const b = 2n * y - x;
+
+            if (a < b && a > (b / 2n) && a > 0n && b > 0n) {
+                y = a;
+                x = b;
+                p += " R";
+                return [x, y, p];
+            }
+            return null;
+        }
+
+        function findPath() {
+            const a = BigInt(document.getElementById('inputA').value);
+            const b = BigInt(document.getElementById('inputB').value);
+            const c = BigInt(document.getElementById('inputC').value);
+            let x = gcd(a + c, b);
+            let y = gcd(a, b + c);
+            let p = "";
+
+            while (x !== 4n || y !== 3n) {
+                const resultL = isL(x, y, p);
+                const resultM = isM(x, y, p);
+                const resultR = isR(x, y, p);
+
+                if (resultL) {
+                    [x, y, p] = resultL;
+                } else if (resultM) {
+                    [x, y, p] = resultM;
+                } else if (resultR) {
+                    [x, y, p] = resultR;
+                } else {
+                    break;
+                }
+            }
+
+            p = p.split(' ').reverse().join(' '); // Reverse the string
+            const resultElement = document.getElementById('result');
+            if (x === 4n && y === 3n) {
+                resultElement.innerHTML = "The path from 3-4-5 triple to the Pythagorean triple specified is: <span class='path'>" + p + "</span>";
+            } else {
+                resultElement.innerHTML = "No valid path found.";
+            }
+        }
+    </script>
+
+</body>
+</html>
