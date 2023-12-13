@@ -1,1 +1,1 @@
-# Projects here will mostly be related to mathematics
+# This project contains a C++ file and a html file, that performs the function of locating a specified pythagorean(primitive) triple in the phythagorean tree. To learn more about the Pythagorean tree, refer to Mathologer's video on Pythagoras=Fibonacci. 
