@@ -4,19 +4,19 @@
 
 using namespace std;
 
-int gcd(int a, int b) {
+long long gcd(long long a, long long b) {
     while (b != 0) {
-        int temp = b;
+        long long temp = b;
         b = a % b;
         a = temp;
     }
     return a;
 }
 
-int isL(int &x, int &y, std::string &p) {
-    int a = x - y;
-    int b = 3 * x - 4 * y;
-    
+int isL(long long &x, long long &y, std::string &p) {
+    long long a = x - y;
+    long long b = 3 * x - 4 * y;
+
     if (a < b && a > (b / 2) && a > 0 && b > 0) {
         y = a;
         x = b;
@@ -26,9 +26,9 @@ int isL(int &x, int &y, std::string &p) {
     return 0;
 }
 
-int isM(int &x, int &y, std::string &p) {
-    int a = x - y;
-    int b = 2 * y - x;
+int isM(long long &x, long long &y, std::string &p) {
+    long long a = x - y;
+    long long b = 2 * y - x;
 
     if (a < b && a > (b / 2) && a > 0 && b > 0) {
         y = a;
@@ -39,9 +39,9 @@ int isM(int &x, int &y, std::string &p) {
     return 0;
 }
 
-int isR(int &x, int &y, std::string &p) {
-    int a = 3 * y - 2 * x;
-    int b = 2 * y - x;
+int isR(long long &x, long long &y, std::string &p) {
+    long long a = 3 * y - 2 * x;
+    long long b = 2 * y - x;
 
     if (a < b && a > (b / 2) && a > 0 && b > 0) {
         y = a;
@@ -53,12 +53,12 @@ int isR(int &x, int &y, std::string &p) {
 }
 
 int main() {
-    int x,y,a,b,c;
+    long long x, y, a, b, c;
     string p = "";
-    cout << "Enter the odd leg,even leg and hypotenuse values: ";
+    cout << "Enter the odd leg, even leg, and hypotenuse values: ";
     cin >> a >> b >> c;
-    x=gcd(a+c,b);
-    y=gcd(a,b+c);
+    x = gcd(a + c, b);
+    y = gcd(a, b + c);
     while (x != 4 || y != 3) {
         if (isL(x, y, p)) {
             continue;
