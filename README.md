@@ -1,1 +1,0 @@
-# This project contains a C++ file and also a html(internal css and js) file, that performs the function of locating a specified pythagorean(primitive) triple in the pythagorean tree. Note that the triple 3-4-5 is the root.To learn more about the Pythagorean tree, refer to Mathologer's video on Pythagoras=Fibonacci. 
