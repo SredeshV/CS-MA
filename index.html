@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pythagorean Triple Path</title>
+    <title>Pythagorean Tree Path Finder</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,12 +20,12 @@
         }
 
         section {
-            max-width: 800px;
-            margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin: 20px;
         }
 
         button {
@@ -46,12 +46,24 @@
             font-weight: bold;
             color: #4CAF50;
         }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Pythagorean Triple Path Finder</h1>
+        <h1>Pythagorean Tree Path Finder</h1>
     </header>
 
     <section>
@@ -62,7 +74,7 @@
         <button onclick="findPath()">Find Path</button>
         <p id="result"></p>
         <h3>Sample tree propagation depiction</h3>
-        <img src="Tree.png" alt="tree" width="300" height="300">
+        <img src="Tree.png" alt="tree">
         <p>To learn more about Pythagorean Tree, refer this video:<a href="https://youtu.be/94mV7Fmbx88?feature=shared" target="_blank">Pythagorean Tree</a></p>
     </section>
 
